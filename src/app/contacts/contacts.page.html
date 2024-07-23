@@ -1,6 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Contacts</ion-title>
+    <ion-toggle [(ngModel)]="paletteToggle" (ionChange)="toggleChange($event)" slot="end"
+        ></ion-toggle>
   </ion-toolbar>
 </ion-header>
 
