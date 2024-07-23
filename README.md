@@ -30,11 +30,17 @@
    - Utiliser le module Storage d'Ionic pour stocker les contacts localement:
    - 'npm install @ionic/storage-angular'
    - 'npm install @angular/forms'
+   - Importer le module dans le fichier `app.module.ts`
+   - Importer le module dans le fichier `contact.service.ts`
+   - Utiliser le service `Storage` pour stocker et récupérer les contacts.
+   - Utiliser le service `FormBuilder` pour créer des formulaires.
 
 5. **Construire l'interface utilisateur**
    - Concevoir et implémenter l'UI pour les pages de contacts et de détails des contacts.
+   
 
 6. **Tester l'application**
+   - Exécuter `ionic serve` pour lancer l'application dans un navigateur
    - Tester toutes les fonctionnalités de l'application.
    - Vérifier que l'application fonctionne correctement sur différents appareils.
 
@@ -42,6 +48,7 @@
 
 1. **Compiler l'application**
    - Exécuter `ionic build` pour compiler l'application.
+   
 
 2. **Déployer sur un serveur web**
    - Copier le contenu du dossier `www` vers un serveur web.
