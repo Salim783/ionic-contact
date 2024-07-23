@@ -5,8 +5,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterContacts($event)"></ion-searchbar>
   <ion-list>
-    <ion-item-sliding *ngFor="let contact of contacts">
+    <ion-item-sliding *ngFor="let contact of filteredContacts">
       <ion-item>
         <ion-label>
           {{ contact.prenom }} {{ contact.nom }}

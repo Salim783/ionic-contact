@@ -12,6 +12,8 @@ import { AddContactPage } from '../add-contact/add-contact.page';
 })
 export class ContactsPage implements OnInit {
   contacts: Contact[] = [];
+  filteredContacts: Contact[] = [];
+  searchTerm: string = '';
   visibleDetails: { [key: number]: boolean } = {};
 
   constructor(
@@ -23,6 +25,7 @@ export class ContactsPage implements OnInit {
   async ngOnInit() {
     await this.contactService.init();
     this.contacts = this.contactService.getContacts();
+    this.filteredContacts = this.contacts;
   }
 
   async openAddContactModal() {
@@ -33,6 +36,7 @@ export class ContactsPage implements OnInit {
     modal.onDidDismiss().then((result) => {
       if (result.data && result.data.added) {
         this.contacts = this.contactService.getContacts();
+        this.filteredContacts = this.contacts;
       }
     });
 
@@ -58,6 +62,7 @@ export class ContactsPage implements OnInit {
   saveSelectedContact(contact: Contact) {
     this.contactService.updateContact(contact).then(() => {
       this.contacts = this.contactService.getContacts();
+      this.filteredContacts = this.contacts;
       this.visibleDetails[contact.id] = false;
     });
   }
@@ -65,6 +70,19 @@ export class ContactsPage implements OnInit {
   deleteContact(id: number) {
     this.contactService.deleteContact(id).then(() => {
       this.contacts = this.contactService.getContacts();
+      this.filteredContacts = this.contacts;
+    });
+  }
+
+  filterContacts(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    this.filteredContacts = this.contacts.filter(contact => {
+      return (
+        contact.nom.toLowerCase().includes(searchTerm) ||
+        contact.prenom.toLowerCase().includes(searchTerm) ||
+        contact.tel.includes(searchTerm) ||
+        contact.email.toLowerCase().includes(searchTerm)
+      );
     });
   }
 }
