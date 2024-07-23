@@ -10,14 +10,23 @@
      - `ionic generate page add-contact`
      - `ionic generate page edit-contact`
 
+
 2. **Créer les modèles**
    - Créer un fichier `contact.model.ts` dans `src/app/models`.
+   - Ajouter les propriétés suivantes :
+   - `id` : `number`
+   - `name` : `string`
+   - `email` : `string`
+   - `phone` : `number`
 
+
+   
 3. **Créer les services**
-   - Créer un fichier `contact.service.ts` dans `src/app/services`.
+   - Créer un fichier `contact.service.ts` et `theme.service.ts` dans `src/app/services`.
    - Implémenter les méthodes CRUD.
+   - Implémenter les méthodes de gestion des thèmes.
 
-4. **Implémenter le stockage local**
+4. **Implémenter le stockage local dans `contact.service.ts`**
    - Utiliser le module Storage d'Ionic pour stocker les contacts localement:
    - 'npm install @ionic/storage-angular'
    - 'npm install @angular/forms'
@@ -27,6 +36,7 @@
 
 6. **Tester l'application**
    - Tester toutes les fonctionnalités de l'application.
+   - Vérifier que l'application fonctionne correctement sur différents appareils.
 
 ## Processus de Déploiement
 

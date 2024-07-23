@@ -2,7 +2,7 @@ export interface Contact {
     id: number;
     nom: string;
     prenom: string;
-    tel: string;
+    tel: number;
     email: string;
   }
   

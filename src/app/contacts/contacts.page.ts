@@ -95,7 +95,7 @@ export class ContactsPage implements OnInit {
       return (
         contact.nom.toLowerCase().includes(searchTerm) ||
         contact.prenom.toLowerCase().includes(searchTerm) ||
-        contact.tel.includes(searchTerm) ||
+        contact.tel.toString().includes(searchTerm) ||
         contact.email.toLowerCase().includes(searchTerm)
       );
     });
