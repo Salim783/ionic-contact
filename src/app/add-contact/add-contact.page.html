@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ajouter un Contact</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Fermer</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="contactForm">
+    <ion-item>
+      <ion-label position="stacked">Nom</ion-label>
+      <ion-input formControlName="nom"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="nom.invalid && (nom.dirty || nom.touched)">
+      <p *ngIf="nom.errors?.['required']">Le nom est requis.</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="stacked">Prénom</ion-label>
+      <ion-input formControlName="prenom"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)">
+      <p *ngIf="prenom.errors?.['required']">Le prénom est requis.</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="stacked">Téléphone</ion-label>
+      <ion-input formControlName="tel"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="tel.invalid && (tel.dirty || tel.touched)">
+      <p *ngIf="tel.errors?.['required']">Le téléphone est requis.</p>
+      <p *ngIf="tel.errors?.['pattern']">Le téléphone doit contenir 10 chiffres.</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+      <p *ngIf="email.errors?.['required']">L'email est requis.</p>
+      <p *ngIf="email.errors?.['email']">L'email doit être valide.</p>
+    </ion-text>
+
+    <ion-button expand="full" (click)="addContact()">Enregistrer</ion-button>
+  </form>
+</ion-content>

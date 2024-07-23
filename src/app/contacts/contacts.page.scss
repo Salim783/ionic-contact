@@ -1,0 +1,39 @@
+ion-content {
+    padding: 10px;
+  
+    ion-list {
+      margin-top: 10px;
+    }
+  
+    ion-item {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+    }
+  
+    .contact-details {
+      background-color: white;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+      ion-item {
+        --background: transparent;
+      }
+  
+      ion-label {
+        font-weight: bold;
+      }
+  
+      ion-input {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+      }
+    }
+  }
+  

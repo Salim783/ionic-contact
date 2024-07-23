@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Contacts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let contact of contacts">
+      <ion-item>
+        <ion-label>
+          {{ contact.prenom }} {{ contact.nom }}
+        </ion-label>
+        <ion-button fill="outline" slot="end" (click)="viewDetails(contact)">
+          Détails
+        </ion-button>
+        <ion-button fill="outline" slot="end" (click)="editContact(contact)">
+          Modifier
+        </ion-button>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteContact(contact.id)">
+          Supprimer
+        </ion-item-option>
+      </ion-item-options>
+
+      <div *ngIf="isDetailsVisible(contact)" class="contact-details">
+        <ion-item>
+          <ion-label position="stacked">Nom</ion-label>
+          <ion-input [(ngModel)]="contact.nom" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Prénom</ion-label>
+          <ion-input [(ngModel)]="contact.prenom" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Téléphone</ion-label>
+          <ion-input [(ngModel)]="contact.tel" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input [(ngModel)]="contact.email" readonly></ion-input>
+        </ion-item>
+      </div>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openAddContactModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,31 @@
+/* add-contact.page.scss */
+
+ion-header {
+    --background: var(--ion-background-color);
+    --color: var(--ion-text-color);
+  }
+  
+  ion-toolbar {
+    --background: var(--ion-background-color);
+    --color: var(--ion-text-color);
+  }
+  
+  ion-title {
+    color: var(--ion-text-color);
+  }
+  
+  ion-content {
+    padding: 16px;
+  }
+  
+  ion-item {
+    margin-bottom: 8px;
+    border-radius: 8px;
+    --background: var(--ion-color-light);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  ion-button {
+    margin-top: 16px;
+  }
+  
