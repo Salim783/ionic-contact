@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from '../services/contact.service';
 import { Contact } from '../models/contact.model';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-add-contact',
@@ -11,17 +12,23 @@ import { Contact } from '../models/contact.model';
 })
 export class AddContactPage {
   contactForm: FormGroup;
+  paletteToggle = false;
 
   constructor(
     private modalController: ModalController,
     private contactService: ContactService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private themeService: ThemeService
   ) {
     this.contactForm = this.formBuilder.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       tel: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       email: ['', [Validators.required, Validators.email]]
+    });
+
+    this.themeService.darkMode$.subscribe(isDark => {
+      this.paletteToggle = isDark;
     });
   }
 

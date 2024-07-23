@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from '../services/contact.service';
 import { Contact } from '../models/contact.model';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-edit-contact',
@@ -12,12 +13,14 @@ import { Contact } from '../models/contact.model';
 export class EditContactPage implements OnInit {
   contactForm: FormGroup;
   contactId!: number;
+  paletteToggle = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private contactService: ContactService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private themeService: ThemeService
   ) {
     this.contactForm = this.formBuilder.group({
       nom: ['', Validators.required],
@@ -33,6 +36,10 @@ export class EditContactPage implements OnInit {
     if (contact) {
       this.contactForm.patchValue(contact);
     }
+
+    this.themeService.darkMode$.subscribe(isDark => {
+      this.paletteToggle = isDark;
+    });
   }
 
   saveContact() {

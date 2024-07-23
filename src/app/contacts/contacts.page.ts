@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ContactService } from '../services/contact.service';
+import { ThemeService } from '../services/theme.service';
 import { Contact } from '../models/contact.model';
 import { AddContactPage } from '../add-contact/add-contact.page';
 import { addIcons } from 'ionicons';
@@ -22,7 +23,8 @@ export class ContactsPage implements OnInit {
   constructor(
     private contactService: ContactService,
     private modalController: ModalController,
-    private router: Router
+    private router: Router,
+    private themeService: ThemeService
   ) {
     addIcons({ personCircle, personCircleOutline, sunny, sunnyOutline });
   }
@@ -32,31 +34,13 @@ export class ContactsPage implements OnInit {
     this.contacts = this.contactService.getContacts();
     this.filteredContacts = this.contacts;
 
-    // Utiliser matchMedia pour vérifier la préférence de l'utilisateur
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-
-    // Initialiser la palette sombre basée sur la valeur initiale
-    // de la requête media prefers-color-scheme
-    this.initializeDarkPalette(prefersDark.matches);
-
-    // Écouter les changements de la requête media prefers-color-scheme
-    prefersDark.addEventListener('change', (mediaQuery) => this.initializeDarkPalette(mediaQuery.matches));
+    this.themeService.darkMode$.subscribe(isDark => {
+      this.paletteToggle = isDark;
+    });
   }
 
-  // Cocher/décocher le toggle et mettre à jour la palette basée sur isDark
-  initializeDarkPalette(isDark: boolean) {
-    this.paletteToggle = isDark;
-    this.toggleDarkPalette(isDark);
-  }
-
-  // Écouter les changements du toggle pour basculer la palette sombre
   toggleChange(ev: CustomEvent) {
-    this.toggleDarkPalette(ev.detail.checked);
-  }
-
-  // Ajouter ou supprimer la classe "ion-palette-dark" sur l'élément html
-  toggleDarkPalette(shouldAdd: boolean) {
-    document.documentElement.classList.toggle('ion-palette-dark', shouldAdd);
+    this.themeService.setDarkMode(ev.detail.checked);
   }
 
   async openAddContactModal() {
